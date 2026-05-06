@@ -2108,20 +2108,20 @@
     
 
     const AI_PROVIDER_PRESETS = {
-        iflow: {
-            label: "Qwen",
-            baseUrl: "https://apis.iflow.cn/v1/chat/completions",
-            model: "qwen3-coder-plus"
+        gemai: {
+            label: "GemAI",
+            baseUrl: "https://api.gemai.cc/v1/chat/completions",
+            model: "[满血B]gemini-2.5-flash"
         }
     };
 
-    const HARDCODED_IFLOW_API_KEY = "sk-f777c395eff8ac6bb1864c95d0d1f5ae";
+    const HARDCODED_GEMAI_API_KEY = "sk-Ea3qmZBH5hhrE24iwP8x4z38Hez4YAzkFJJ81ad4bUqT7YDk";
 
     const AI_DEFAULT_CONFIG = {
-        provider: "iflow",
-        baseUrl: AI_PROVIDER_PRESETS.iflow.baseUrl,
-        model: AI_PROVIDER_PRESETS.iflow.model,
-        apiKey: HARDCODED_IFLOW_API_KEY,
+        provider: "gemai",
+        baseUrl: AI_PROVIDER_PRESETS.gemai.baseUrl,
+        model: AI_PROVIDER_PRESETS.gemai.model,
+        apiKey: HARDCODED_GEMAI_API_KEY,
         systemPrompt: "你是“形势与政策课程 · 智慧助教系统”中的小白牙智慧助教。请始终使用中文回答，优先服务职业院校教师场景，回答应尽量结合思政教学、学情分析、课堂设计、课堂诊断、专业融合和课程问答，表达清楚、可直接用于教学。"
     };
 
@@ -2310,7 +2310,7 @@
             const parsed = JSON.parse(raw);
             aiState.config = {
                 ...AI_DEFAULT_CONFIG,
-                apiKey: HARDCODED_IFLOW_API_KEY || parsed.apiKey || "",
+                apiKey: HARDCODED_GEMAI_API_KEY || parsed.apiKey || "",
                 systemPrompt: parsed.systemPrompt || AI_DEFAULT_CONFIG.systemPrompt
             };
         } catch (error) {
@@ -2546,7 +2546,7 @@
 
         if (!aiState.config.apiKey || !aiState.config.baseUrl || !aiState.config.model) {
             updateAIStatus("error");
-            appendMessageToChat("assistant", "当前页面未检测到可用的 API 配置，请检查脚本中的 HARDCODED_IFLOW_API_KEY、模型名和接口地址。", { persist: false, className: "error" });
+            appendMessageToChat("assistant", "当前页面未检测到可用的 API 配置，请检查脚本中的 HARDCODED_GEMAI_API_KEY、模型名和接口地址。", { persist: false, className: "error" });
             return;
         }
 
